@@ -91,14 +91,19 @@
   </div>
   <hr>
   <center>
-    <div style="border: 2px solid black ; height: 400px; width: 350px;" id="hello" ></div>
+    <div style="border: 2px solid black ; height: 400px; width: 350px;" id="hello" style="background-size: cover;"><img
+        src="" id="image" alt=""></div>
   </center>
   <center>
-    <div style="border: 2px solid black ; height: 60px; width: 350px;background-color: purple;"><input style="margin-top: 13px; margin-left: 60px;" type="file" id="uploadfile"  onchange="storagee()" name="Files" multiple></div>
-  </center><div style="margin-top: 10px;"></div>
-  <center><button type="button" class="btn btn-primary">Primary</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-danger">Danger</button>
+    <div style="border: 2px solid black ; height: 60px; width: 350px;background-color: purple;"><input
+        style="margin-top: 13px; margin-left: 60px;" type="file" id="uploadfile" onchange="storagee()" name="Files"
+        multiple></div>
   </center>
-  
+  <div style="margin-top: 10px;"></div>
+  <center><button type="button" class="btn btn-primary">Upload Image</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button
+      type="button" class="btn btn-danger">Cancel Upload</button>
+  </center>
+
 
 
 
@@ -129,20 +134,28 @@
     };
     firebase.initializeApp(firebaseConfig);
     function storagee() {
-    let file =document.getElementById("uploadfile").files[0]
-    console.log(file)
-    firebase.storage().ref("user1").child(file.name).put(file)
-    let fn=file.name;
-    
-    firebase.storage().ref("user1/"+fn).getDownloadURL().then(url=>{
-            console.log(url)
-            document.getElementById("hello").style.backgroundColor=red;
-        }).catch(e=>{
-            console.log(e)
+      let file = document.getElementById("uploadfile").files[0]
+      firebase.storage().ref("user1").child(file.name).put(file).then(() => {
+        console.log(file)
+        let fn = file.name;
+        let usr = "user1/" + fn;
+
+        firebase.storage().ref(usr).getDownloadURL().then(url => {
+          console.log(url);
+          const image = document.getElementById('image');
+          image.src = url
+
+         
+        }).catch(e => {
+          console.log(e)
         })
+      }).catch(e => {
+        console.log(e)
+      })
 
 
-}
+
+    }
 
   </script>
   <script src="personalphotocollection.js"></script>
