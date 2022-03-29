@@ -21,7 +21,7 @@
   <title>Personal Photo Collection | Mini - Insta</title>
 </head>
 
-<body>
+<body onload="onloadd()">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
     <div class="container-fluid">
@@ -94,17 +94,18 @@
     <div style="border: 2px solid black ; height: 400px; " id="hello" style="background-size: contain;"><img
         src="images/uploadimage.jpg" id="image" alt="" height="394px"></div>
   </center>
+  <div id="signupform"></div>
   <center>
-    <div style="border: 2px solid black ; height: 60px; width: 400px;background-color: purple;"><input
+    <div style="border: 2px solid black ; height: 80px; width: 400px;background-color: purple;"><input
         style="margin-top: 13px; margin-left: 60px;" type="file" id="uploadfile" onchange="storagee()" name="Files"
-        multiple></div>
+        multiple><br><span id="spann" style="color:aliceblue;"></span></div>
   </center>
   <div style="margin-top: 10px;"></div>
   <center><button type="button" class="btn btn-primary" onclick="ghjk()">Upload
       Image</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-danger"
       onclick="deleteimage()">Cancel Upload</button>
   </center>
-  <div id="uploadedimages" style="border: 1 px solid purple;"></div>
+  <center><div id="helloo" style="height: 400px;"><hr></div></center>
 
 
 
@@ -116,7 +117,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
-    
+
 
 
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -137,18 +138,21 @@
     };
     firebase.initializeApp(firebaseConfig);
     function storagee() {
+      document.getElementById("spann").innerHTML="Wait till the image previews before uploading"
+      // console.log("wait");
       let file = document.getElementById("uploadfile").files[0]
-      firebase.storage().ref("user1").child(file.name).put(file).then(() => {
-        console.log(file)
+      const e =localStorage.getItem("username");
+      const v=e+"/uploadedphotos"
+      firebase.storage().ref(v).child(file.name).put(file).then(() => {
+        // console.log(file)
         let fn = file.name;
-        let usr = "user1/" + fn;
+        let usr = e+"/uploadedphotos/" + fn;
 
         firebase.storage().ref(usr).getDownloadURL().then(url => {
-          console.log(url);
+          // console.log(url);
           const image = document.getElementById('image');
           image.src = url
-          // document.getElementById("image").width="300px";
-          // console.log(w);
+          
 
 
         }).catch(e => {
@@ -162,7 +166,8 @@
     function deleteimage() {
       let file = document.getElementById("uploadfile").files[0]
       let fn = file.name;
-      let usr = "user1/" + fn;
+      let h=localStorage.getItem("username");
+      let usr = h+"/uploadedphotos/" + fn;
 
       firebase.storage().ref(usr).delete().then(() => {
         console.log("deleted successfully")
@@ -171,35 +176,85 @@
 
       })
     }
+    function onloadd(){
+      let h=localStorage.getItem("username");
+      let usr = h+"/uploadedphotos";
+      firebase.storage().ref().child(usr).listAll()
+        .then((res) => {
+          res.prefixes.forEach((folderRef) => {
+            // console.log(folderRef)
+            // All the prefixes under listRef.
+            // You may call listAll() recursively on them.
+          });
+          res.items.forEach((itemRef) => {
+            itemRef.getDownloadURL().then((url)=>{
+              const imagg =document.createElement("img");
+              const datediv=document.createElement("div");
+              imagg.id="hu";
+              // document.getElementById("hu").appendChild(datediv);
+              
+              document.getElementById("helloo").appendChild(imagg);
+              document.getElementById("helloo").appendChild(datediv);
+              imagg.style="height:400px;"
+              imagg.src=url;
+              datediv.style.height="30px";
+              
+              
+              console.log("download url: "+url);
+            })
+            // All the items under listRef.
+          });
+        }).catch((error) => {
+          // Uh-oh, an error occurred!
+          console.log(error);
+        });
+    }
     function ghjk() {
-      const imga = document.createElement("img");
-      imga.id="hllo";
-      imga.style.height = "400px";
-      imga.style.border="1px solid black";
-      document.getElementById("uploadedimages").appendChild
-      (imga);
-      let file = document.getElementById("uploadfile").files[0];
-      let fn = file.name;
-      let usr = "user1/" + fn;
-      firebase.storage().ref(usr).getDownloadURL().then(url => {
-          console.log(url);
-          const image = document.getElementById('hllo');
-          image.src = url
-          // document.getElementById("image").width="300px";
-          // console.log(w);
-          const imge = document.getElementById('image');
-        imge.src = "images/uploadimage.jpg"
+      
+      location.reload();
+      const imge = document.getElementById('image');
+      imge.src = "images/uploadimage.jpg"
 
 
-        }).catch(e => {
-          console.log(e)
-        })
 
+      // Find all the prefixes and items.
+      // let h=localStorage.getItem("username");
+      // let usr = h+"/uploadedphotos";
+      // firebase.storage().ref().child(usr).listAll()
+      //   .then((res) => {
+      //     res.prefixes.forEach((folderRef) => {
+      //       // console.log(folderRef)
+      //       // All the prefixes under listRef.
+      //       // You may call listAll() recursively on them.
+      //     });
+      //     res.items.forEach((itemRef) => {
+      //       itemRef.getDownloadURL().then((url)=>{
+      //         const imagg =document.createElement("img");
+      //         const datediv=document.createElement("div");
+      //         imagg.id="hu";
+      //         // document.getElementById("hu").appendChild(datediv);
+              
+      //         document.getElementById("helloo").appendChild(imagg);
+      //         document.getElementById("helloo").appendChild(datediv);
+      //         imagg.style="height:400px;"
+      //         imagg.src=url;
+      //         datediv.style.height="30px";
+              
+              
+      //         console.log("download url: "+url);
+      //       })
+      //       // All the items under listRef.
+      //     });
+      //   }).catch((error) => {
+      //     // Uh-oh, an error occurred!
+      //     console.log(error);
+      //   });
     }
 
 
   </script>
   <script src="personalphotocollection.js"></script>
+  <!-- <script src="index.js"></script> -->
 
 
 </body>
