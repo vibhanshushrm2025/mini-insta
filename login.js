@@ -18,6 +18,10 @@ function logins() {
     localStorage.setItem("email", snapshot.val());
     
   })
+  let be=username+"/profilephoto/1";
+  firebase.storage().ref(be).getDownloadURL().then((url)=>{
+    localStorage.setItem("profilephotourl",url);
+  })
   document.getElementById("error").innerHTML = "Loading!!!";
 
   setTimeout(() => {

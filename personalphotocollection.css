@@ -1,0 +1,19 @@
+.hiddenFileInput > input{
+    height: 100%;
+    width: 100;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .hiddenFileInput{
+    /* border: 1px solid #ccc; */
+    /* width: 100px; */
+    height: 30px;
+    display: inline-block;
+    overflow: hidden;
+    cursor: pointer;
+    
+    /*for the background, optional*/
+    background: center center no-repeat;
+    background-size: 75% 75%;
+    /* background-image:  url("images/uyt.png") */
+  }

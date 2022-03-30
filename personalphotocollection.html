@@ -45,7 +45,11 @@
               <b><i>Friends</i></b>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#"><b><i>DM's</i></b></a></li>
+              <li><a class="dropdown-item" href="#"><b><i><span class="hiddenFileInput">
+                        <input type="file" name="theFile" id="profileimage" onchange="updatedphoto()" multiple />Update
+                        your profile
+                        photo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </span></i></b></a></li>
               <li><a class="dropdown-item" href="#"><b><i>Followed</i></b></a></li>
               <li>
                 <hr class="dropdown-divider">
@@ -75,8 +79,19 @@
 
   <div style="border:1px solid black;"></div>
   <span style="height:240px;">
-    <center><button><img style="border-radius: 3px;" src="images/userpicture.jpg" alt="profilepicture"
-          height="235px"></button></center>
+    <!-- <center><button style="border-radius: 50%;"><img style="border-radius: 50%;" src="images/userpicture.jpg" alt="profilepicture"
+          height="235px"  ></button></center> -->
+    <center><button style="height: 400px;width: 100%;">
+        <center><img src="" id="hug" style="border-radius: 100%;height: 400px;" alt=""></center>
+      </button></center>
+
+
+    <!-- <span class="hiddenFileInput">
+        <input type="file" name="theFile" id="profileimage" onchange="updatedphoto()" multiple />
+      </span> -->
+
+
+
     <br><br>
     <span style="margin-left: 52px;"><b style="font-size: 50px;">#</b><i><span id="usrname"
           style="margin-left: 25px;font-size: 35px;"></span> <span id="namee"
@@ -105,7 +120,11 @@
       Image</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-danger"
       onclick="deleteimage()">Cancel Upload</button>
   </center>
-  <center><div id="helloo" style="height: 400px;"><hr></div></center>
+  <center>
+    <div id="helloo" style="height: 400px;">
+      <hr>
+    </div>
+  </center>
 
 
 
@@ -138,21 +157,21 @@
     };
     firebase.initializeApp(firebaseConfig);
     function storagee() {
-      document.getElementById("spann").innerHTML="Wait till the image previews before uploading"
+      document.getElementById("spann").innerHTML = "Wait till the image previews before uploading"
       // console.log("wait");
       let file = document.getElementById("uploadfile").files[0]
-      const e =localStorage.getItem("username");
-      const v=e+"/uploadedphotos"
+      const e = localStorage.getItem("username");
+      const v = e + "/uploadedphotos"
       firebase.storage().ref(v).child(file.name).put(file).then(() => {
         // console.log(file)
         let fn = file.name;
-        let usr = e+"/uploadedphotos/" + fn;
+        let usr = e + "/uploadedphotos/" + fn;
 
         firebase.storage().ref(usr).getDownloadURL().then(url => {
           // console.log(url);
           const image = document.getElementById('image');
           image.src = url
-          
+
 
 
         }).catch(e => {
@@ -166,8 +185,8 @@
     function deleteimage() {
       let file = document.getElementById("uploadfile").files[0]
       let fn = file.name;
-      let h=localStorage.getItem("username");
-      let usr = h+"/uploadedphotos/" + fn;
+      let h = localStorage.getItem("username");
+      let usr = h + "/uploadedphotos/" + fn;
 
       firebase.storage().ref(usr).delete().then(() => {
         console.log("deleted successfully")
@@ -176,9 +195,9 @@
 
       })
     }
-    function onloadd(){
-      let h=localStorage.getItem("username");
-      let usr = h+"/uploadedphotos";
+    function onloadd() {
+      let h = localStorage.getItem("username");
+      let usr = h + "/uploadedphotos";
       firebase.storage().ref().child(usr).listAll()
         .then((res) => {
           res.prefixes.forEach((folderRef) => {
@@ -187,20 +206,20 @@
             // You may call listAll() recursively on them.
           });
           res.items.forEach((itemRef) => {
-            itemRef.getDownloadURL().then((url)=>{
-              const imagg =document.createElement("img");
-              const datediv=document.createElement("div");
-              imagg.id="hu";
+            itemRef.getDownloadURL().then((url) => {
+              const imagg = document.createElement("img");
+              const datediv = document.createElement("div");
+              imagg.id = "hu";
               // document.getElementById("hu").appendChild(datediv);
-              
+
               document.getElementById("helloo").appendChild(imagg);
               document.getElementById("helloo").appendChild(datediv);
-              imagg.style="height:400px;"
-              imagg.src=url;
-              datediv.style.height="30px";
-              
-              
-              console.log("download url: "+url);
+              imagg.style = "height:400px;"
+              imagg.src = url;
+              datediv.style.height = "30px";
+
+
+              console.log("download url: " + url);
             })
             // All the items under listRef.
           });
@@ -208,9 +227,19 @@
           // Uh-oh, an error occurred!
           console.log(error);
         });
+      let g = localStorage.getItem("username");
+      let u=g+"/profilephoto/1";
+      firebase.storage().ref(u).getDownloadURL().then((url)=>{
+        console.log(url);
+      })
+      let imag = document.getElementById("hug");
+      imag.src = g;
+
     }
+    // let t=document.getElementById("hiddenFileInput");
+    // t.style.backgroundImage="height:100px"
     function ghjk() {
-      
+
       location.reload();
       const imge = document.getElementById('image');
       imge.src = "images/uploadimage.jpg"
@@ -233,14 +262,14 @@
       //         const datediv=document.createElement("div");
       //         imagg.id="hu";
       //         // document.getElementById("hu").appendChild(datediv);
-              
+
       //         document.getElementById("helloo").appendChild(imagg);
       //         document.getElementById("helloo").appendChild(datediv);
       //         imagg.style="height:400px;"
       //         imagg.src=url;
       //         datediv.style.height="30px";
-              
-              
+
+
       //         console.log("download url: "+url);
       //       })
       //       // All the items under listRef.
@@ -249,6 +278,20 @@
       //     // Uh-oh, an error occurred!
       //     console.log(error);
       //   });
+    }
+    function updatedphoto() {
+      let file = document.getElementById("profileimage").files[0];
+      let s = file.name;
+      e = localStorage.getItem("username");
+      let n = e + "/profilephoto";
+      firebase.storage().ref(n).child("1").put(file).then(() => {
+        let m = e + "/profilephoto/1";
+        firebase.storage().ref(m).getDownloadURL().then((url) => {
+          let imag = document.getElementById("hug");
+          imag.src = url;
+          localStorage.setItem("profilephotourl", url);
+        })
+      })
     }
 
 
