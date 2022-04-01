@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <title>Friend's Profile | Mini - Insta</title>
+</head>
+
+<body onload="initialfunction()">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="othersprofileuploadedimages.html">Uploaded Images</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="othersprofilesavedimages.html">Saved Images</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="othersprofilelikedimages.html">Liked Images</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled">Disabled</a>
+    </li>
+  </ul>
+
+
+  <div style="height: 400px;">
+    <center><img src="" alt="" id="imag" style="height: 400px; border-radius: 50%;"></center>
+  </div>
+  <hr>
+  <div id="names" style="height:40px;margin-bottom: 30px;">
+    <center style="margin-bottom: 10px;"><b style="font-size: 50px;"><i>#&nbsp;<span
+            id="username"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="name"></span></i></b></center>
+  </div>
+  <hr>
+  <div style="height: 30px;"></div>
+  <center><button type="button" class="btn btn-primary" onclick="follow()">Follow</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button type="button" class="btn btn-secondary" onclick="unfollow()">Unfollow</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="status" style="font-size: 18px;">You are not following the user's feeds</span></center>
+  <div style="height: 30px;"></div>
+  
+  <center>
+    <div id="helloo" style="height: 400px;"></div>
+  </center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+  <script src="othersprofileuploadedimages.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+  <script src="firebase.js"></script>
+
+
+
+
+</body>
+
+</html>
