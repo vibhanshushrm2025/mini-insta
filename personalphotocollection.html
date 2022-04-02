@@ -22,8 +22,7 @@
 </head>
 
 <body onload="onloadd()">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
+  <nav class="navbar navbar-light" style="background-color: #98d8f5;">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"><img src="images/instalogo.jpg" alt="" width="30" height="24"
           class="d-inline-block align-text-top"><b> &nbsp;&nbsp;<i>Mini - Insta</i></b></a>
@@ -60,21 +59,22 @@
           </li>
 
         </ul>
-        <nav class="navbar navbar-light bg-light">
-          <form class="container-fluid">
-            <div class="input-group">
-              <span class="input-group-text" id="basic-addon1">#</span>
-              <input type="text" class="form-control" placeholder="Search images" aria-label="Username"
-                aria-describedby="basic-addon1">
-            </div>
-          </form>
-        </nav>
+        
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search by username" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div>
     </div>
+  </nav>
+  <div style="border:0.5px solid black;"></div>
+  <nav class="navbar navbar-light" style="background-color: #98d8f5;">    <form class="container-fluid">
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1">#</span>
+        <input type="text" class="form-control" placeholder="Search images" aria-label="Username"
+          aria-describedby="basic-addon1">
+      </div>
+    </form>
   </nav>
 
   <div style="border:1px solid black;"></div>
@@ -228,12 +228,13 @@
           console.log(error);
         });
       let g = localStorage.getItem("username");
-      let u=g+"/profilephoto/1";
-      firebase.storage().ref(u).getDownloadURL().then((url)=>{
+      let u = g + "/profilephoto/1";
+      firebase.storage().ref(u).getDownloadURL().then((url) => {
         console.log(url);
+        let imag = document.getElementById("hug");
+        imag.src = url;
       })
-      let imag = document.getElementById("hug");
-      imag.src = g;
+
 
     }
     // let t=document.getElementById("hiddenFileInput");

@@ -1,3 +1,5 @@
 body{
-    background-color: rgb(231, 90, 114);
+    background-image: url(images/homedefault/15.jpg);
+    background-attachment: fixed;
+    background-size: cover;
 }

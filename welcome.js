@@ -31,6 +31,73 @@ firebase.storage().ref("username").listAll()
 // unsplash.photos.getPhoto("pFqrYbhIAXs");
 
 function homedefaultt() {
+
+
+  console.log("main work started");
+  let uy = localStorage.getItem("username");
+  let hu = uy + "/friends";
+  let i = 0;
+  firebase.database().ref(hu).once('value', function (snapshot) {
+    snapshot.forEach(
+      function (ChildSnapshot) {
+        console.log("2");
+        let ry = ChildSnapshot.val().followingstatus;
+        // let h = snapshot.val();
+        // console.log(snapshot.val());
+        let h = ChildSnapshot.val().followingstatus;
+
+
+        console.log("3");
+        // let h = localStorage.getItem("username1");
+        let usr = h + "/uploadedphotos";
+        firebase.storage().ref().child(usr).listAll()
+          .then((res) => {
+            res.prefixes.forEach((folderRef) => {
+              // console.log(folderRef)
+              // All the prefixes under listRef.
+              // You may call listAll() recursively on them.
+            });
+
+            res.items.forEach((itemRef) => {
+              itemRef.getDownloadURL().then((url) => {
+                const imagg = document.createElement("img");
+                const datedv = document.createElement("div");
+                // imagg.id = "hu";
+                // document.getElementById("hu").appendChild(datediv);
+
+                document.getElementById("helloo").appendChild(imagg);
+                document.getElementById("helloo").appendChild(datedv);
+                imagg.style = "height:400px;border-radius: 5px; border: 5px solid rgb(185, 28, 111);"
+                imagg.src = url;
+                datedv.style.height = "30px";
+                i++;
+                let uio = i * (430);
+                let yui = uio.toString();
+                let uiop = yui + "px";
+                console.log(uiop);
+
+                document.getElementById("helloo").style.height = uiop;
+                let op = ChildSnapshot.val().followingstatus;
+                datedv.innerHTML = "#" + op;
+                datediv.style="font-size:20px;"
+
+
+
+
+                console.log("download url: " + url);
+              })
+              // All the items under listRef.
+            });
+          }).catch((error) => {
+            // Uh-oh, an error occurred!
+            console.log(error);
+          });
+
+      }
+
+
+    )
+  })
   // firebase.storage().ref("home").listAll()
   //   .then((res) => {
   //     res.prefixes.forEach((folderRef) => { });
@@ -50,13 +117,14 @@ function homedefaultt() {
   //   }).catch((error) => {
   //     console.log(error);
   //   });
-  const imaggggggg = document.createElement("img");
+  // const imaggggggg = document.createElement("img");
   const datedivvvvvv = document.createElement("div");
-
-  document.getElementById("imhhhhhh").appendChild(imaggggggg);
+  imagggggggf=document.getElementById("imaggggggg");
+  // document.getElementById("imhhhhhh").appendChild(imaggggggg);
   document.getElementById("imhhhhhh").appendChild(datedivvvvvv);
   datedivvvvvv.style.height = "30px";
-  imaggggggg.src = "https://source.unsplash.com/300x400/?boys";
+  imagggggggf.src = "https://source.unsplash.com/300x400/?boys";
+  // imaggggggg.style.border-radius="50px"
 
 
   const imagggggggg = document.createElement("img");
@@ -99,10 +167,11 @@ function homedefaultt() {
   // imagg.style = "height:400px;"
   imaggggggggggg.src = "https://source.unsplash.com/500x400/?selfie";
 
-  const imagg = document.createElement("img");
+  // const imagg = document.createElement("img");
   const datediv = document.createElement("div");
-  imagg.id = "hu";
-  document.getElementById("imh").appendChild(imagg);
+  // imagg.id = "hu";
+  // document.getElementById("imh").appendChild(imagg);
+  imagg=document.getElementById("imagg");
   document.getElementById("imh").appendChild(datediv);
   datediv.style.height = "30px";
   // imagg.style = "height:400px;"
@@ -149,6 +218,16 @@ function homedefaultt() {
 
   // imagg.style = "height:400px;"
   imagggggg.src = "https://source.unsplash.com/500x400/?girls";
+
+
+
+
+
+
+
+
+
+
 }
 
 function usernamesearch() {
@@ -163,16 +242,18 @@ function usernamesearch() {
   firebase.database().ref(s).get().then((snapshot) => {
     if (snapshot.exists()) {
       console.log(snapshot.val());
-      
-      localStorage.setItem("username1",u)
+
+      localStorage.setItem("username1", u)
       location.replace("othersprofileuploadedimages.html")
     } else {
-      document.getElementById("huihui").innerHTML="No such username exists!!!!!"
+      document.getElementById("huihui").innerHTML = "No such username exists!!!!!"
       // console.log("No data available");
     }
   }).catch((error) => {
     console.error(error);
   });
+
+
 }
 
 

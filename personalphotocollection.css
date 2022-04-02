@@ -17,3 +17,8 @@
     background-size: 75% 75%;
     /* background-image:  url("images/uyt.png") */
   }
+  body{
+    background-image: url(images/homedefault/16.jpg);
+    background-attachment: fixed;
+    background-repeat: cover;
+  }
