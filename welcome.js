@@ -46,7 +46,7 @@ function homedefaultt() {
         // console.log(snapshot.val());
         let h = ChildSnapshot.val().followingstatus;
 
-
+        
         console.log("3");
         // let h = localStorage.getItem("username1");
         let usr = h + "/uploadedphotos";
@@ -127,17 +127,18 @@ function homedefaultt() {
   // imaggggggg.style.border-radius="50px"
 
 
-  const imagggggggg = document.createElement("img");
+  
+  const imagggggggg = document.getElementById("imagggggggg");
   const datedivvvvvvv = document.createElement("div");
 
   document.getElementById("imhhhhhhh").appendChild(imagggggggg);
   document.getElementById("imhhhhhhh").appendChild(datedivvvvvvv);
   datedivvvvvvv.style.height = "30px";
-
+  
   // imagg.style = "height:400px;"
   imagggggggg.src = "https://source.unsplash.com/500x400/?friends";
-
-  const imaggggggggg = document.createElement("img");
+  
+  const imaggggggggg = document.getElementById("imaggggggggg")
   const datedivvvvvvvv = document.createElement("div");
 
   document.getElementById("imhhhhhhhh").appendChild(imaggggggggg);
@@ -147,7 +148,7 @@ function homedefaultt() {
   // imagg.style = "height:400px;"
   imaggggggggg.src = "https://source.unsplash.com/500x400/?fashion";
 
-  const imagggggggggg = document.createElement("img");
+  const imagggggggggg = document.getElementById("imagggggggggg")
   const datedivvvvvvvvv = document.createElement("div");
 
   document.getElementById("imhhhhhhhhh").appendChild(imagggggggggg);
@@ -157,13 +158,13 @@ function homedefaultt() {
   // imagg.style = "height:400px;"
   imagggggggggg.src = "https://source.unsplash.com/500x400/?place";
 
-  const imaggggggggggg = document.createElement("img");
+  const imaggggggggggg = document.getElementById("imaggggggggggg")
   const datedivvvvvvvvvv = document.createElement("div");
 
   document.getElementById("imhhhhhhhhhh").appendChild(imaggggggggggg);
   document.getElementById("imhhhhhhhhhh").appendChild(datedivvvvvvvvvv);
   datedivvvvvvvvvv.style.height = "30px";
-
+  
   // imagg.style = "height:400px;"
   imaggggggggggg.src = "https://source.unsplash.com/500x400/?selfie";
 
@@ -177,28 +178,29 @@ function homedefaultt() {
   // imagg.style = "height:400px;"
   imagg.src = "https://source.unsplash.com/400x400/?nature";
 
-  const imaggg = document.createElement("img");
+  const imaggg = document.getElementById("imaggg");
   const datedivv = document.createElement("div");
   imaggg.id = "hu";
   document.getElementById("imhh").appendChild(imaggg);
   document.getElementById("imhh").appendChild(datedivv);
-  datedivv.style.height = "30px";
+  datedivv.style = "height:30px;";
 
   // imagg.style = "height:400px;"
   imaggg.src = "https://source.unsplash.com/500x300/?nature,water";
 
-  const imagggg = document.createElement("img");
+  const imagggg = document.getElementById("imagggg");
   const datedivvv = document.createElement("div");
 
   document.getElementById("imhhh").appendChild(imagggg);
   document.getElementById("imhhh").appendChild(datedivvv);
   datedivvv.style.height = "30px";
+  
 
   // imagg.style = "height:400px;"
   imagggg.src = "https://source.unsplash.com/300x400/?nature,forest";
 
 
-  const imaggggg = document.createElement("img");
+  const imaggggg = document.getElementById("imaggggg");
   const datedivvvv = document.createElement("div");
 
   document.getElementById("imhhhh").appendChild(imaggggg);
@@ -209,7 +211,7 @@ function homedefaultt() {
   imaggggg.src = "https://source.unsplash.com/500x400/?animal";
 
 
-  const imagggggg = document.createElement("img");
+  const imagggggg = document.getElementById("imagggggg");
   const datedivvvvv = document.createElement("div");
 
   document.getElementById("imhhhhh").appendChild(imagggggg);

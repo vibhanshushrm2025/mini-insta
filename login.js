@@ -6,6 +6,7 @@ firebase.auth().onAuthStateChanged((user) => {
     location.replace("welcome.html")
   }
 });
+
 function logins() {
   const username = document.getElementById("signupname").value
   const email = document.getElementById("loginemail").value
@@ -16,30 +17,30 @@ function logins() {
   firebase.database().ref(b).on("value", (snapshot) => {
     console.log(snapshot.val())
     localStorage.setItem("email", snapshot.val());
-    
+
   })
-  let be=username+"/profilephoto/1";
-  firebase.storage().ref(be).getDownloadURL().then((url)=>{
-    localStorage.setItem("profilephotourl",url);
+  let be = username + "/profilephoto/1";
+  firebase.storage().ref(be).getDownloadURL().then((url) => {
+    localStorage.setItem("profilephotourl", url);
   })
   document.getElementById("error").innerHTML = "Loading!!!";
 
   setTimeout(() => {
     const u = localStorage.getItem("email");
-  console.log(email);
-  console.log(u);
-  if (u == email) {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .catch((error) => {
-        document.getElementById("error").innerHTML = error.message;
+    console.log(email);
+    console.log(u);
+    if (u == email) {
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .catch((error) => {
+          document.getElementById("error").innerHTML = error.message;
 
-      });
-  }
-  else {
-    document.getElementById("error").innerHTML = "username doesn't match with registered email"
-  }
+        });
+    }
+    else {
+      document.getElementById("error").innerHTML = "username doesn't match with registered email"
+    }
   }, 2000);
-  
+
 
 
 
