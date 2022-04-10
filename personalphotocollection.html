@@ -130,6 +130,7 @@
       <hr>
     </div>
   </center>
+  <span class="q"></span>
 
 
 
@@ -210,17 +211,16 @@
       firebase.storage().ref().child(usr).listAll()
         .then((res) => {
           res.prefixes.forEach((folderRef) => {
-            // console.log(folderRef)
-            // All the prefixes under listRef.
-            // You may call listAll() recursively on them.
           });
-          res.items.forEach((itemRef) => {
 
+
+          res.items.forEach((itemRef) => {
             itemRef.getDownloadURL().then((url) => {
               let r = itemRef.name;
               let o = "images/" + r + "/hashtag";
               const imagg = document.createElement("img");
               const likebutton = document.createElement("button");
+              
               const dislikebutton = document.createElement("button");
               const br = document.createElement("br");
               const b = document.createElement("br");
@@ -237,6 +237,7 @@
               imagg.id = "hu";
               // document.getElementById("hu").appendChild(datediv);
 
+              
               document.getElementById("helloo").appendChild(imagg);
               document.getElementById("helloo").appendChild(br);
               document.getElementById("helloo").appendChild(b);
@@ -257,7 +258,11 @@
               datediv.style.height = "30px";
               likebutton.setAttribute("type", "button");
               likebutton.setAttribute("class", "btn btn-warning");
-              likebutton.setAttribute("onclick", "likeadd(r)");
+              likebutton.setAttribute("onclick", likeadd(r));
+              localStorage.setItem(r,"i");
+              let op =localStorage.getItem(r);
+              console.log(op);
+              console.log(r);
               // localStorage.setItem("r",r);
               likebutton.setAttribute("ofimage", r);
               // likebutton.id = "yy";
@@ -311,19 +316,15 @@
 
 
 
-
-
     }
-
     let uo = localStorage.getItem("username");
-    // let r = localStorage.getItem("r");
-    function likeadd(r) {
-      // let r = document.getElementById("yy").getAttribute("ofimage");
-      firebase.database().ref("supportstatus/" + r).update({
+    function likeadd(imgadd) {
+      console.log("run");
+      console.log(imgadd);
+      firebase.database().ref("supportstatus/" + imgadd).update({
         1: uo
       });
     }
-
     function ghjk() {
 
       // let file = document.getElementById("uploadfile").files[0];
