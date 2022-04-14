@@ -71,7 +71,6 @@ function homedefaultt() {
                 document.getElementById("helloo").appendChild(turr);
                 document.getElementById("helloo").appendChild(datediv);
 
-
                 di.setAttribute('type', 'text');
                 di.setAttribute('placeholder', 'Enter username to share');
                 di.style = "margin-top:10px";
@@ -266,25 +265,27 @@ function share(event) {
   firebase.database().ref(tr).get().then((snapshot) => {
     if (snapshot.exists()) {
       let yo = "sharedwith/" + w + "/faltu/" + b;
-      firebase.database().ref(yo).set(uix);
-
-      let uo = w + "/sharedwithme";
+      firebase.database().ref(yo).update({
+        "sharedby": uix
+      });
+      firebase.database().ref(yo).update({
+        "id": b
+      });
       let we = "images/" + b + "/username";
       firebase.database().ref(we).on('value', (snapshot) => {
         let uploadedby = snapshot.val();
-        let qw = uploadedby + "/uploadedphotos/" + b;
-        firebase.storage().ref(qw).getDownloadURL().then(url => {
-          console.log(url);
-          let file = url;
-          firebase.storage().ref(uo).child(b).put(file).then(() => {
-        }).catch(() => {
-        })
-        })
-        
-        document.getElementById(ww).innerHTML = "<center>Shared succesfully !!!!!!</center>";
-        document.getElementById(ww).style = "color:white;";
+        firebase.database().ref(yo).update({
+        "uploadedby": uploadedby
+      });
       })
       
+
+      
+
+
+      document.getElementById(ww).innerHTML = "<center>Shared succesfully !!!!!!</center>";
+      document.getElementById(ww).style = "color:white;";
+
 
 
     } else {
@@ -294,9 +295,6 @@ function share(event) {
   }).catch((error) => {
     console.error(error);
   });
-
-
-
 }
 function likeadd(event) {
   u = event.target.id;
