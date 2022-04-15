@@ -14,7 +14,10 @@
   <title>Mini - Insta | Home</title>
 </head>
 
-<body onload="homedefaultt()" >
+<body onload="homedefaultt()">
+  <div style="border:0.5px solid black;"></div>
+  <div style="border:0.5px solid black;"></div>
+
 
   <nav class="navbar navbar-light" style="background-color: #98d8f5;">
     <div class="container-fluid">
@@ -38,65 +41,73 @@
               <b><i>Friends</i></b>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#"><b><i>DM's</i></b></a></li>
+              <li><a class="dropdown-item" href="imagesearching.html"><b><i># Search image by hashtag</i></b></a></li>
               <li><a class="dropdown-item" href="shared.html"><b><i>Shared with me</i></b></a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="#"><img src="images/userdefaultimage.png" alt=""><b><i>Your's
-                      Profile</i></b></a></li>
+
             </ul>
           </li>
 
         </ul>
-        
-        <form class="d-flex" onsubmit="usernamesearch()" id="usernameform">
-          <input class="form-control me-2" type="search" placeholder="Search by username" aria-label="Search" id="searchbyusername">
-          <button class="btn btn-outline-success" type="submit" >Search</button>
-        </form>
+
+
       </div>
     </div>
   </nav>
   <div style="border:0.5px solid black;"></div>
-  <nav class="navbar navbar-light" style="background-color: #98d8f5;">    <form class="container-fluid">
-      <div class="input-group" >
-        <span class="input-group-text" id="basic-addon1">#</span>
-        <input type="text" class="form-control" placeholder="Search images" aria-label="Username"
-          aria-describedby="basic-addon1">
-      </div>
+  <nav class="navbar navbar-light" style="background-color: #98d8f5;">
+    <form class="container-fluid" onsubmit="usernamesearch()" id="usernameform">
+        <div class="input-group">
+            <span class="input-group-text" id="basic-addon1">#</span>
+            <input id="searchbyusername" type="text" class="form-control" placeholder="Search your friend by username" aria-label="Username"
+                aria-describedby="basic-addon1" id="imagehashtag">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </div>
     </form>
-  </nav>
-  <!-- <div style="border:0.5px solid black;"></div> -->
+</nav>
+  <div style="border:0.5px solid black;"></div>
+
   <span style="color:rgb(115, 255, 0);text-align:center;" id="huihui"></span>
-  <!-- <div style="height: 30px;"></div> -->
   <center>
     <div id="helloo" style="margin-bottom: 30px;">
       <hr>
     </div>
   </center>
   <div>
-    <center id="imhhhhh"><img src="" alt="" id="imagggggg" style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
-    <center id="imhhhhhh"><img src="" alt="" id="imaggggggg" style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
-    <center id="imh"><img src="" alt="" id="imagg" style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
-    <center id="imhh"><img src="" alt="" id="imaggg" style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
-    <center id="imhhh"><img src="" alt="" id="imaggggg" style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
-    <center id="imhhhh"><img src="" alt="" id="imagggg" style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
-    <center id="imhhhhhhh"><img src="" alt="" id="imagggggggg" style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
-    <center id="imhhhhhhhh"><img src="" alt="" id="imaggggggggg" style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
-    <center id="imhhhhhhhhh"><img src="" alt="" id="imagggggggggg" style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
-    <center id="imhhhhhhhhhh"><img src="" alt="" id="imaggggggggggg" style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
+    <center id="imhhhhh"><img src="" alt="" id="imagggggg"
+        style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
+    <center id="imhhhhhh"><img src="" alt="" id="imaggggggg"
+        style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
+    <center id="imh"><img src="" alt="" id="imagg" style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); ">
+    </center>
+    <center id="imhh"><img src="" alt="" id="imaggg" style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); ">
+    </center>
+    <center id="imhhh"><img src="" alt="" id="imaggggg"
+        style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
+    <center id="imhhhh"><img src="" alt="" id="imagggg"
+        style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
+    <center id="imhhhhhhh"><img src="" alt="" id="imagggggggg"
+        style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
+    <center id="imhhhhhhhh"><img src="" alt="" id="imaggggggggg"
+        style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
+    <center id="imhhhhhhhhh"><img src="" alt="" id="imagggggggggg"
+        style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
+    <center id="imhhhhhhhhhh"><img src="" alt="" id="imaggggggggggg"
+        style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
   </div>
 
   <center><button type="button" class="btn btn-primary" onclick="logout()">Logout</button></center>
   <hr>
-  
 
-  
-  
 
-  
 
-  
+
+
+
+
+
   <!-- <div><button onclick="logout()">logout</button></div> -->
 
 
@@ -109,12 +120,13 @@
 
   <script src="firebase.js"></script>
   <script src="welcome.js"></script>
+  <script src="commonfunctions.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
 
 

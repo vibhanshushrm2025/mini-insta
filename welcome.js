@@ -49,6 +49,28 @@ function homedefaultt() {
                 const tur = document.createElement("span");
                 const turr = document.createElement("div");
 
+                const but = document.createElement('div');
+                but.style = "margin-top:7px";
+                but.setAttribute('class', "d-grid gap-2 col-6 mx-auto");
+                but.id = r;
+                yuii = r;
+
+                const butt = document.createElement('button');
+                butt.setAttribute('class', "btn btn-primary");
+                butt.setAttribute('type', "button");
+                let ghb = localStorage.getItem("username");
+                let qq = ghb + "/savedimages/" + r + "/id";
+                firebase.database().ref(qq).on('value', (snapshot) => {
+                  if (snapshot.exists()) {
+                    butt.innerHTML = "This image is saved to your's saved folder . Click to save again";
+                  }
+                  else {
+                    butt.innerHTML = "Save this image";
+                  }
+                })
+                butt.id = r;
+                butt.addEventListener('click', save);
+
                 imagg.id = "hu";
                 document.getElementById("helloo").appendChild(imagg);
                 document.getElementById("helloo").appendChild(br);
@@ -68,8 +90,12 @@ function homedefaultt() {
                 document.getElementById("helloo").appendChild(di);
                 document.getElementById("helloo").appendChild(tur);
                 document.getElementById("helloo").appendChild(tu);
+                document.getElementById("helloo").appendChild(but);
+                document.getElementById(yuii).appendChild(butt);
                 document.getElementById("helloo").appendChild(turr);
                 document.getElementById("helloo").appendChild(datediv);
+
+
 
                 di.setAttribute('type', 'text');
                 di.setAttribute('placeholder', 'Enter username to share');
@@ -255,195 +281,21 @@ function homedefaultt() {
   imagggggg.src = "https://source.unsplash.com/500x400/?girls";
 
 }
-function share(event) {
-  let uix = localStorage.getItem("username");
-  let b = event.target.id;
-  let i = b + 's';
-  let ww = b + 'e';
-  let w = document.getElementById(i).value;
-  let tr = w + "/username";
-  firebase.database().ref(tr).get().then((snapshot) => {
-    if (snapshot.exists()) {
-      let yo = "sharedwith/" + w + "/faltu/" + b;
-      firebase.database().ref(yo).update({
-        "sharedby": uix
-      });
-      firebase.database().ref(yo).update({
-        "id": b
-      });
-      let we = "images/" + b + "/username";
-      firebase.database().ref(we).on('value', (snapshot) => {
-        let uploadedby = snapshot.val();
-        firebase.database().ref(yo).update({
-        "uploadedby": uploadedby
-      });
-      })
-      
-
-      
-
-
-      document.getElementById(ww).innerHTML = "<center>Shared succesfully !!!!!!</center>";
-      document.getElementById(ww).style = "color:white;";
-
-
-
-    } else {
-      document.getElementById(ww).innerHTML = "<center>No such username exists !!!!</center>";
-      document.getElementById(ww).style = "color:white;";
-    }
-  }).catch((error) => {
-    console.error(error);
-  });
-}
-function likeadd(event) {
-  u = event.target.id;
-
-  let uo = localStorage.getItem("username");
-  firebase.database().ref("supportingstatus/" + u + "/users").child(uo).get().then((snapshot) => {
-    if ((snapshot.exists()) && (snapshot.val() == 'l')) {
-      firebase.database().ref("supportingstatus/" + u + "/users/" + uo).remove();
-      let lelem = document.getElementById(u);
-      lelem.innerHTML = "Like post";
-      lelem.style = "background-color:yellow";
-      firebase.database().ref('images/' + u + '/likes').on('value', (snapshot) => {
-        let i = snapshot.val();
-        i--;
-        localStorage.setItem('likes', i);
-      })
-      let ep = localStorage.getItem('likes');
-      firebase.database().ref('images/' + u).update({
-        likes: ep
-      })
-    }
-    else if ((snapshot.exists()) && (snapshot.val() == 'd')) {
-      let elem = document.getElementById(u);
-      elem.innerHTML = "Liked";
-      elem.style = "background-color:red";
-      firebase.database().ref('images/' + u + '/likes').on('value', (snapshot) => {
-        let i = snapshot.val();
-        i++;
-        localStorage.setItem('likes', i)
-      })
-      let p = localStorage.getItem('likes');
-      firebase.database().ref('images/' + u).update({
-        likes: p
-      })
-      firebase.database().ref("supportingstatus/" + u + "/users/" + uo).set('l');
-      let opp = u + 'darpokdarpok';
-      let delem = document.getElementById(opp);
-      delem.innerHTML = "Dislike post";
-      delem.style = "background-color:yellow";
-      firebase.database().ref('images/' + u + '/dislikes').on('value', (snapshot) => {
-        let i = snapshot.val();
-        i--;
-        localStorage.setItem('dislikes', i);
-      })
-      let wep = localStorage.getItem('dislikes');
-      firebase.database().ref('images/' + u).update({
-        dislikes: wep
-      })
-    }
-    else {
-      let elem = document.getElementById(u);
-      elem.innerHTML = "Liked";
-      elem.style = "background-color:red";
-      firebase.database().ref('images/' + u + '/likes').on('value', (snapshot) => {
-        let i = snapshot.val();
-        i++;
-        localStorage.setItem('likes', i)
-      })
-      let p = localStorage.getItem('likes');
-      firebase.database().ref('images/' + u).update({
-        likes: p
-      })
-      firebase.database().ref("supportingstatus/" + u + "/users/" + uo).set('l');
-    }
-
-  })
-
-
-}
-function dislikeadd(event) {
-  let yt = event.target.id;
-  u = yt.replace('darpokdarpok', '');
-
-
-  let uo = localStorage.getItem("username");
-  firebase.database().ref("supportingstatus/" + u + "/users").child(uo).get().then((snapshot) => {
-
-    if ((snapshot.exists()) && (snapshot.val() == 'd')) {
-      firebase.database().ref("supportingstatus/" + u + "/users/" + uo).remove();
-      let opp = u + 'darpokdarpok';
-      let delem = document.getElementById(opp);
-      delem.innerHTML = "Dislike post";
-      delem.style = "background-color:yellow";
-      firebase.database().ref('images/' + u + '/dislikes').on('value', (snapshot) => {
-        let i = snapshot.val();
-        i--;
-        localStorage.setItem('dislikes', i);
-      })
-      let wep = localStorage.getItem('dislikes');
-      firebase.database().ref('images/' + u).update({
-        dislikes: wep
-      })
-    }
-    else if ((snapshot.exists()) && (snapshot.val() == 'l')) {
-      let elem = document.getElementById(yt);
-      elem.innerHTML = "Disiked";
-      elem.style = "background-color:red";
-      firebase.database().ref('images/' + u + '/dislikes').on('value', (snapshot) => {
-        let i = snapshot.val();
-        i++;
-        localStorage.setItem('dislikes', i);
-      })
-      let p = localStorage.getItem('dislikes');
-      firebase.database().ref('images/' + u).update({
-        dislikes: p
-      })
-      firebase.database().ref("supportingstatus/" + u + "/users/" + uo).set('d');
-      let lelem = document.getElementById(u);
-      lelem.innerHTML = "Like post";
-      lelem.style = "background-color:yellow";
-      firebase.database().ref('images/' + u + '/likes').on('value', (snapshot) => {
-        let i = snapshot.val();
-        i--;
-        localStorage.setItem('likes', i);
-      })
-      let ep = localStorage.getItem('likes');
-      firebase.database().ref('images/' + u).update({
-        likes: ep
-      })
-    }
-    else {
-      let elem = document.getElementById(yt);
-      elem.innerHTML = "Disiked";
-      elem.style = "background-color:red";
-      firebase.database().ref('images/' + u + '/dislikes').on('value', (snapshot) => {
-        let i = snapshot.val();
-        i++;
-        localStorage.setItem('dislikes', i);
-      })
-      let p = localStorage.getItem('dislikes');
-      firebase.database().ref('images/' + u).update({
-        dislikes: p
-      })
-      firebase.database().ref("supportingstatus/" + u + "/users/" + uo).set('d');
-    }
-
-  })
-
-}
 function usernamesearch() {
   let u = document.getElementById("searchbyusername").value;
   let s = u + "/email";
+  let ui = localStorage.getItem("username");
   firebase.database().ref(s).get().then((snapshot) => {
-    if (snapshot.exists()) {
+    if ((snapshot.exists()) && (u != ui)) {
       console.log(snapshot.val());
 
       localStorage.setItem("username1", u)
       location.replace("othersprofileuploadedimages.html")
-    } else {
+    }
+    else if ((snapshot.exists()) && (u == ui)) {
+      document.getElementById("huihui").innerHTML = "This is your's own username . Please search your's friend's username!!!!!"
+    }
+    else {
       document.getElementById("huihui").innerHTML = "No such username exists!!!!!"
     }
   }).catch((error) => {
@@ -455,6 +307,8 @@ function usernamesearch() {
 document.getElementById("usernameform").addEventListener('submit', (Event) => {
   Event.preventDefault()
 })
+
+
 
 
 

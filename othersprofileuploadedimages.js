@@ -9,11 +9,11 @@ function initialfunction() {
       let elem = document.getElementById("followingstatus");
       elem.innerHTML = "You are following the user";
     }
-    else{
+    else {
       let elem = document.getElementById("followingstatus");
       elem.innerHTML = "You arenot following the user";
     }
-    
+
   })
 
   let a = h + "/profilephoto/1";
@@ -55,7 +55,36 @@ function initialfunction() {
           const sp = document.createElement("span");
           const p = document.createElement("span");
           const s = document.createElement("span");
+          const di = document.createElement("input");
+          const tu = document.createElement("button");
+          const tur = document.createElement("span");
+          const turr = document.createElement("div");
+          const d = document.createElement("br");
           const datediv = document.createElement("div");
+
+          const but = document.createElement('div');
+          but.style = "margin-top:7px";
+          but.setAttribute('class', "d-grid gap-2 col-6 mx-auto");
+          but.id = r;
+          yuii = r;
+
+          const butt = document.createElement('button');
+          butt.setAttribute('class', "btn btn-primary");
+          butt.setAttribute('type', "button");
+          let ghb = localStorage.getItem("username");
+          let qq = ghb + "/savedimages/" + r + "/id";
+          firebase.database().ref(qq).on('value', (snapshot) => {
+            if (snapshot.exists()) {
+              butt.innerHTML = "This image is saved to your's saved folder . Click to save again";
+            }
+            else {
+              butt.innerHTML = "Save this image";
+            }
+          })
+          butt.id = r;
+          butt.addEventListener('click', save);
+
+
           imagg.id = "hu";
           document.getElementById("helloo").appendChild(imagg);
           document.getElementById("helloo").appendChild(br);
@@ -71,10 +100,34 @@ function initialfunction() {
           document.getElementById("helloo").appendChild(dislikebutton);
           document.getElementById("helloo").appendChild(s);
           document.getElementById("helloo").appendChild(p);
+          document.getElementById("helloo").appendChild(d);
+          document.getElementById("helloo").appendChild(di);
+          document.getElementById("helloo").appendChild(tur);
+          document.getElementById("helloo").appendChild(tu);
+          document.getElementById("helloo").appendChild(but);
+          document.getElementById(yuii).appendChild(butt);
+
+          document.getElementById("helloo").appendChild(turr);
           document.getElementById("helloo").appendChild(datediv);
           imagg.style = "height:400px;border-radius: 5px; border: 5px solid rgb(185, 28, 111);"
           imagg.src = url;
           datediv.style.height = "30px";
+
+          tu.setAttribute("class", "btn btn-info");
+          tu.innerHTML = "Share";
+          tu.id = r;
+          tu.addEventListener('click', share);
+
+          turr.id = r + "e";
+
+
+          di.setAttribute('type', 'text');
+          di.setAttribute('placeholder', 'Enter username to share');
+          di.style = "margin-top:10px";
+          di.id = r + 's';
+
+          tur.innerHTML = "&nbsp;&nbsp;&nbsp;";
+
 
 
           likebutton.id = r;
@@ -144,144 +197,6 @@ function initialfunction() {
       });
     });
 }
-function likeadd(event) {
-  u = event.target.id;
-
-  let uo = localStorage.getItem("username");
-  firebase.database().ref("supportingstatus/" + u + "/users").child(uo).get().then((snapshot) => {
-    if ((snapshot.exists()) && (snapshot.val() == 'l')) {
-      firebase.database().ref("supportingstatus/" + u + "/users/" + uo).remove();
-      let lelem = document.getElementById(u);
-      lelem.innerHTML = "Like post";
-      lelem.style = "background-color:yellow";
-      firebase.database().ref('images/' + u + '/likes').on('value', (snapshot) => {
-        let i = snapshot.val();
-        i--;
-        localStorage.setItem('likes', i);
-      })
-      let ep = localStorage.getItem('likes');
-      firebase.database().ref('images/' + u).update({
-        likes: ep
-      })
-    }
-    else if ((snapshot.exists()) && (snapshot.val() == 'd')) {
-      let elem = document.getElementById(u);
-      elem.innerHTML = "Liked";
-      elem.style = "background-color:red";
-      firebase.database().ref('images/' + u + '/likes').on('value', (snapshot) => {
-        let i = snapshot.val();
-        i++;
-        localStorage.setItem('likes', i)
-      })
-      let p = localStorage.getItem('likes');
-      firebase.database().ref('images/' + u).update({
-        likes: p
-      })
-      firebase.database().ref("supportingstatus/" + u + "/users/" + uo).set('l');
-      let opp = u + 'darpokdarpok';
-      let delem = document.getElementById(opp);
-      delem.innerHTML = "Dislike post";
-      delem.style = "background-color:yellow";
-      firebase.database().ref('images/' + u + '/dislikes').on('value', (snapshot) => {
-        let i = snapshot.val();
-        i--;
-        localStorage.setItem('dislikes', i);
-      })
-      let wep = localStorage.getItem('dislikes');
-      firebase.database().ref('images/' + u).update({
-        dislikes: wep
-      })
-    }
-    else {
-      let elem = document.getElementById(u);
-      elem.innerHTML = "Liked";
-      elem.style = "background-color:red";
-      firebase.database().ref('images/' + u + '/likes').on('value', (snapshot) => {
-        let i = snapshot.val();
-        i++;
-        localStorage.setItem('likes', i)
-      })
-      let p = localStorage.getItem('likes');
-      firebase.database().ref('images/' + u).update({
-        likes: p
-      })
-      firebase.database().ref("supportingstatus/" + u + "/users/" + uo).set('l');
-    }
-
-  })
-
-
-}
-function dislikeadd(event) {
-  let yt = event.target.id;
-  u = yt.replace('darpokdarpok', '');
-
-
-  let uo = localStorage.getItem("username");
-  firebase.database().ref("supportingstatus/" + u + "/users").child(uo).get().then((snapshot) => {
-
-    if ((snapshot.exists()) && (snapshot.val() == 'd')) {
-      firebase.database().ref("supportingstatus/" + u + "/users/" + uo).remove();
-      let opp = u + 'darpokdarpok';
-      let delem = document.getElementById(opp);
-      delem.innerHTML = "Dislike post";
-      delem.style = "background-color:yellow";
-      firebase.database().ref('images/' + u + '/dislikes').on('value', (snapshot) => {
-        let i = snapshot.val();
-        i--;
-        localStorage.setItem('dislikes', i);
-      })
-      let wep = localStorage.getItem('dislikes');
-      firebase.database().ref('images/' + u).update({
-        dislikes: wep
-      })
-    }
-    else if ((snapshot.exists()) && (snapshot.val() == 'l')) {
-      let elem = document.getElementById(yt);
-      elem.innerHTML = "Disiked";
-      elem.style = "background-color:red";
-      firebase.database().ref('images/' + u + '/dislikes').on('value', (snapshot) => {
-        let i = snapshot.val();
-        i++;
-        localStorage.setItem('dislikes', i);
-      })
-      let p = localStorage.getItem('dislikes');
-      firebase.database().ref('images/' + u).update({
-        dislikes: p
-      })
-      firebase.database().ref("supportingstatus/" + u + "/users/" + uo).set('d');
-      let lelem = document.getElementById(u);
-      lelem.innerHTML = "Like post";
-      lelem.style = "background-color:yellow";
-      firebase.database().ref('images/' + u + '/likes').on('value', (snapshot) => {
-        let i = snapshot.val();
-        i--;
-        localStorage.setItem('likes', i);
-      })
-      let ep = localStorage.getItem('likes');
-      firebase.database().ref('images/' + u).update({
-        likes: ep
-      })
-    }
-    else {
-      let elem = document.getElementById(yt);
-      elem.innerHTML = "Disiked";
-      elem.style = "background-color:red";
-      firebase.database().ref('images/' + u + '/dislikes').on('value', (snapshot) => {
-        let i = snapshot.val();
-        i++;
-        localStorage.setItem('dislikes', i);
-      })
-      let p = localStorage.getItem('dislikes');
-      firebase.database().ref('images/' + u).update({
-        dislikes: p
-      })
-      firebase.database().ref("supportingstatus/" + u + "/users/" + uo).set('d');
-    }
-
-  })
-
-}
 function follow() {
   let u = localStorage.getItem("username");
   let u1 = localStorage.getItem("username1");
@@ -297,4 +212,5 @@ function unfollow() {
   firebase.database().ref(e).remove();
   document.getElementById("followingstatus").innerHTML = "You arenot following this user";
 }
+
 

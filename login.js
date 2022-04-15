@@ -17,15 +17,6 @@ function logins() {
   firebase.database().ref(b).on("value", (snapshot) => {
     console.log(snapshot.val())
     localStorage.setItem("email", snapshot.val());
-
-  })
-  let be = username + "/profilephoto/1";
-  firebase.storage().ref(be).getDownloadURL().then((url) => {
-    localStorage.setItem("profilephotourl", url);
-  })
-  document.getElementById("error").innerHTML = "Loading!!!";
-
-  setTimeout(() => {
     const u = localStorage.getItem("email");
     console.log(email);
     console.log(u);
@@ -39,7 +30,17 @@ function logins() {
     else {
       document.getElementById("error").innerHTML = "username doesn't match with registered email"
     }
-  }, 2000);
+
+  })
+  let be = username + "/profilephoto/1";
+  firebase.storage().ref(be).getDownloadURL().then((url) => {
+    localStorage.setItem("profilephotourl", url);
+  })
+  document.getElementById("error").innerHTML = "Loading!!!";
+
+  // setTimeout(() => {
+    
+  // }, 2000);
 
 
 
