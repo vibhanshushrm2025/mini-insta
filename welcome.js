@@ -10,14 +10,29 @@ function logout() {
 function homedefaultt() {
   console.log("main work started");
   let uy = localStorage.getItem("username");
+  tu = uy + "/box";
+  firebase.database().ref(tu).on('value', (snapshot) => {
+    if (snapshot.exists()) {
+      document.querySelector('.bg-modal').style.display = "none";
+    }
+    else {
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 3000);
+      setTimeout(() => {
+        document.querySelector('.bg-modal').style.display = "flex";
+        document.body.classList.add("stop-scrolling");
+      }, 5000);
+
+
+    }
+  });
+  document.getElementById("huu").innerText = uy;
   let hu = uy + "/friends";
-  let i = 0;
   firebase.database().ref(hu).once('value', function (snapshot) {
     snapshot.forEach(
       function (ChildSnapshot) {
-        console.log("2");
         let h = ChildSnapshot.val().followingstatus;
-        console.log("3");
         let usr = h + "/uploadedphotos";
         firebase.storage().ref().child(usr).listAll()
           .then((res) => {
@@ -25,6 +40,7 @@ function homedefaultt() {
             });
 
             res.items.forEach((itemRef) => {
+              console.log("final");
               itemRef.getDownloadURL().then((url) => {
                 let r = itemRef.name;
                 let o = "images/" + r + "/hashtag";
@@ -121,7 +137,7 @@ function homedefaultt() {
                 firebase.database().ref("supportingstatus/" + r + "/users").child(uo).get().then((snapshot) => {
                   if ((snapshot.exists()) && (snapshot.val() == 'l')) {
                     let elem = document.getElementById(r);
-                    likebutton.style = "background-color:red";
+                    likebutton.style = "background-color:green";
                     likebutton.innerHTML = "Liked";
                   }
                   else {
@@ -148,7 +164,6 @@ function homedefaultt() {
                   }
 
                 })
-
 
                 span.innerHTML = "&nbsp;&nbsp;&nbsp;";
                 san.innerHTML = "&nbsp;&nbsp;&nbsp;";
@@ -177,10 +192,17 @@ function homedefaultt() {
                 })
 
 
+
+
               })
 
 
+
+
             });
+
+
+
           }).catch((error) => {
             console.log(error);
           });
@@ -188,15 +210,15 @@ function homedefaultt() {
       }
 
 
-    )
-  })
+    );
 
+  })
   const datedivvvvvv = document.createElement("div");
   imagggggggf = document.getElementById("imaggggggg");
   document.getElementById("imhhhhhh").appendChild(datedivvvvvv);
   datedivvvvvv.style.height = "30px";
   imagggggggf.src = "https://source.unsplash.com/300x400/?boys";
-
+  console.log("1");
 
 
   const imagggggggg = document.getElementById("imagggggggg");
@@ -247,7 +269,6 @@ function homedefaultt() {
   document.getElementById("imhh").appendChild(imaggg);
   document.getElementById("imhh").appendChild(datedivv);
   datedivv.style = "height:30px;";
-
   imaggg.src = "https://source.unsplash.com/500x300/?nature,water";
 
   const imagggg = document.getElementById("imagggg");
@@ -307,8 +328,35 @@ function usernamesearch() {
 document.getElementById("usernameform").addEventListener('submit', (Event) => {
   Event.preventDefault()
 })
+function hasna() {
+  var coffee = document.forms[0];
+  if (coffee[0].checked) {
+    let i = localStorage.getItem("username");
+    let yu = i + "/box";
+    firebase.database().ref(yu).set("checked");
+  }
+  else {
+    let i = localStorage.getItem("username");
+    let yu = i + "/box";
+    firebase.database().ref(yu).remove();
+  }
+  document.querySelector('.bg-modal').style.display = "none";
+  document.body.classList.remove("stop-scrolling");
 
-
-
-
-
+}
+setTimeout(() => {
+  const preload = document.querySelector('.preload');
+  preload.classList.add('preload-finish');
+}, 5000);
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+let a;
+let time;
+let date;
+function logkaro() {
+  a = new Date();
+  time = a.getHours() + ':' + a.getMinutes() + ':' + a.getSeconds();
+  date = a.toLocaleDateString(undefined, options);
+  document.getElementById('jkl1').innerHTML = time + ' hours';
+  document.getElementById('jkl').innerHTML = ' on ' + date;
+}
+setInterval(logkaro, 1000);

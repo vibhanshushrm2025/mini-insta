@@ -138,7 +138,7 @@ function initialfunction() {
           firebase.database().ref("supportingstatus/" + r + "/users").child(uo).get().then((snapshot) => {
             if ((snapshot.exists()) && (snapshot.val() == 'l')) {
               let elem = document.getElementById(r);
-              likebutton.style = "background-color:red";
+              likebutton.style = "background-color:green";
               likebutton.innerHTML = "Liked";
             }
             else {
@@ -212,5 +212,14 @@ function unfollow() {
   firebase.database().ref(e).remove();
   document.getElementById("followingstatus").innerHTML = "You arenot following this user";
 }
+function logout() {
+  firebase.auth().signOut()
+}
+firebase.auth().onAuthStateChanged((user) => {
+  if (!user) {
+    location.replace("login.html")
+
+  }
+})
 
 

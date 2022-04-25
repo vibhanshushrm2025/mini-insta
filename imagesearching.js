@@ -3,7 +3,7 @@ function fun() {
   let a = "photos/" + em;
   firebase.database().ref(a).get().then((snapshot) => {
     if (snapshot.exists()) {
-      document.getElementById("huihui").innerHTML = "";
+      document.getElementById("huihui").innerHTML = "Loading !! wait ....";
       console.log("hai photo");
       let usr = "images/" + em;
       firebase.storage().ref().child(usr).listAll()
@@ -41,7 +41,7 @@ function fun() {
               but.setAttribute('class', "d-grid gap-2 col-6 mx-auto");
               but.id = r;
               yuii = r;
-              
+
               const butt = document.createElement('button');
               butt.setAttribute('class', "btn btn-primary");
               butt.setAttribute('type', "button");
@@ -55,7 +55,7 @@ function fun() {
                   butt.innerHTML = "Save this image";
                 }
               })
-              butt.id = r ;
+              butt.id = r;
               butt.addEventListener('click', save);
 
               imagg.id = "hu";
@@ -106,7 +106,7 @@ function fun() {
               firebase.database().ref("supportingstatus/" + r + "/users").child(uo).get().then((snapshot) => {
                 if ((snapshot.exists()) && (snapshot.val() == 'l')) {
                   let elem = document.getElementById(r);
-                  likebutton.style = "background-color:red";
+                  likebutton.style = "background-color:green";
                   likebutton.innerHTML = "Liked";
                 }
                 else {
@@ -160,6 +160,8 @@ function fun() {
                 spa.innerHTML = "#" + snapshot.val();
                 spa.style = "font-size:30px;color:blue;";
               })
+              document.getElementById("huihui").innerHTML = "";
+
 
 
             })
@@ -168,6 +170,8 @@ function fun() {
           });
         }).catch((error) => {
           console.log(error);
+          document.getElementById("huihui").innerHTML = error.message+"  press search once again";
+
         });
     }
     else {
@@ -177,4 +181,13 @@ function fun() {
 }
 document.getElementById("imagesearchform").addEventListener('submit', (Event) => {
   Event.preventDefault()
+})
+function logout() {
+  firebase.auth().signOut()
+}
+firebase.auth().onAuthStateChanged((user) => {
+  if (!user) {
+    location.replace("login.html")
+
+  }
 })

@@ -61,7 +61,7 @@ function likeadd(event) {
         else if ((snapshot.exists()) && (snapshot.val() == 'd')) {
             let elem = document.getElementById(u);
             elem.innerHTML = "Liked";
-            elem.style = "background-color:red";
+            elem.style = "background-color:green";
             firebase.database().ref('images/' + u + '/likes').on('value', (snapshot) => {
                 let i = snapshot.val();
                 i++;
@@ -89,7 +89,7 @@ function likeadd(event) {
         else {
             let elem = document.getElementById(u);
             elem.innerHTML = "Liked";
-            elem.style = "background-color:red";
+            elem.style = "background-color:green";
             firebase.database().ref('images/' + u + '/likes').on('value', (snapshot) => {
                 let i = snapshot.val();
                 i++;

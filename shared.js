@@ -5,6 +5,7 @@ firebase.storage().ref(u).getDownloadURL().then((url) => {
     imag.src = url
 })
 function pahle() {
+    window.scrollTo(0,0);
     let uo = localStorage.getItem("username");
     let ur = "sharedwith/" + uo + "/faltu";
     firebase.database().ref(uo + "/username").on('value', (snapshot) => {
@@ -121,7 +122,7 @@ function pahle() {
                     firebase.database().ref("supportingstatus/" + r + "/users").child(uo).get().then((snapshot) => {
                         if ((snapshot.exists()) && (snapshot.val() == 'l')) {
                             let elem = document.getElementById(r);
-                            likebutton.style = "background-color:red";
+                            likebutton.style = "background-color:green";
                             likebutton.innerHTML = "Liked";
                         }
                         else {
@@ -184,5 +185,17 @@ function pahle() {
             }
         )
     })
-
 }
+function logout() {
+    firebase.auth().signOut()
+}
+firebase.auth().onAuthStateChanged((user) => {
+    if (!user) {
+        location.replace("login.html")
+
+    }
+})
+setTimeout(() => {
+    const preload = document.querySelector('.preload');
+    preload.classList.add('preload-finish');
+}, 4000);

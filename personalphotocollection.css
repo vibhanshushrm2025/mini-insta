@@ -1,24 +1,117 @@
-.hiddenFileInput > input{
-    height: 100%;
-    width: 100;
-    opacity: 0;
-    cursor: pointer;
+.hiddenFileInput>input {
+  height: 100%;
+  width: 100;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.hiddenFileInput {
+  /* border: 1px solid #ccc; */
+  /* width: 100px; */
+  height: 30px;
+  display: inline-block;
+  overflow: hidden;
+  cursor: pointer;
+
+  /*for the background, optional*/
+  background: center center no-repeat;
+  background-size: 75% 75%;
+  /* background-image:  url("images/uyt.png") */
+}
+
+body {
+  background-image: url(images/homedefault/15.jpg);
+  background-attachment: fixed;
+  background-repeat: cover;
+}
+
+.preload {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: #77b3d4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease;
+
+}
+
+.cloud1,
+.cloud2,
+.cloud3 {
+  height: 100px;
+  position: absolute;
+  right: 0%;
+  z-index: -1;
+}
+
+.cloud1 {
+  top: 25%;
+  transform: translate(100%, -25%);
+  animation: clouds 3s ease infinite;
+}
+
+.cloud2 {
+  top: 50%;
+  transform: translate(100%, -50%);
+  animation: clouds 3s ease infinite 2s;
+
+
+}
+
+.cloud3 {
+  top: 75%;
+  transform: translate(100%, -75%);
+  animation: clouds 3s ease infinite 1.5s;
+
+
+}
+
+.airplane {
+  height: 200px;
+  animation: airplane 1s ease infinite alternate;
+}
+
+.preload h3 {
+  position: absolute;
+  top: 75%;
+  transform: translateY(-75%);
+  color: white;
+  font-size: 30px;
+  font-family: sans-serif;
+}
+
+.preload-finish {
+  opacity: 0;
+  pointer-events: none;
+
+}
+
+section img {
+  height: 200px;
+
+}
+
+@keyframes airplane {
+  from {
+    transform: translateY(0px);
   }
-  .hiddenFileInput{
-    /* border: 1px solid #ccc; */
-    /* width: 100px; */
-    height: 30px;
-    display: inline-block;
-    overflow: hidden;
-    cursor: pointer;
-    
-    /*for the background, optional*/
-    background: center center no-repeat;
-    background-size: 75% 75%;
-    /* background-image:  url("images/uyt.png") */
+
+  to {
+    transform: translateY(50px);
   }
-  body{
-    background-image: url(images/homedefault/15.jpg);
-    background-attachment: fixed;
-    background-repeat: cover;
+
+}
+
+@keyframes clouds {
+  from {
+    right: 0%;
   }
+
+  to {
+    right: 130%;
+  }
+
+}

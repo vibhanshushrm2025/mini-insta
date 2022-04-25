@@ -10,13 +10,42 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="welcome.css">
+  <link rel="shortcut icon" href="images/instalogo.jpg" type="image/x-icon">
+  <link rel="shortcut icon" href="images/instalogo.jpg" type="image/x-icon">
 
   <title>Mini - Insta | Home</title>
 </head>
 
 <body onload="homedefaultt()">
+  <div class="preload">
+    <img class="airplane" src="img/airplane.png" alt="airplane">
+    <h3>Landing on the webpage.........</h3>
+    <img class="cloud1" src="img/cloud.png" alt="cloud1">
+    <img class="cloud2" src="img/cloud.png" alt="cloud2">
+    <img class="cloud3" src="img/cloud.png" alt="cloud3">
+  </div>
+  <div class="bg-modal">
+    <div class="modal-content">
+      <img src="images/abcd.jpg" alt="" height="200px">
+      <div id="hy">
+
+        <span id="ty"><i><b>Welcome , <span id="huu"></span> !!! to mini - insta . Search your friends . Upload images ,share them with friends , add hashtags and much more . Let's start &rarr;
+            </b></i><br></span>
+        <form id="tu">
+          <input type="checkbox" id="dont" name="coffee">
+          <label for="dont">Don't show this again </label>
+        </form>
+
+        <div style="text-align: right;padding-bottom: 30px;"><button class="btn btn-primary" id="getstarted"
+            onclick="hasna()"><i>Get started &rarr;</i></button></div>
+      </div>
+
+
+    </div>
+  </div>
   <div style="border:0.5px solid black;"></div>
   <div style="border:0.5px solid black;"></div>
+  
 
 
   <nav class="navbar navbar-light" style="background-color: #98d8f5;">
@@ -46,8 +75,12 @@
               <li>
                 <hr class="dropdown-divider">
               </li>
+              
 
             </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="logout()"><b><i>Logout &rarr;</i></b></a>
           </li>
 
         </ul>
@@ -59,20 +92,20 @@
   <div style="border:0.5px solid black;"></div>
   <nav class="navbar navbar-light" style="background-color: #98d8f5;">
     <form class="container-fluid" onsubmit="usernamesearch()" id="usernameform">
-        <div class="input-group">
-            <span class="input-group-text" id="basic-addon1">#</span>
-            <input id="searchbyusername" type="text" class="form-control" placeholder="Search your friend by username" aria-label="Username"
-                aria-describedby="basic-addon1" id="imagehashtag">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </div>
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1">#</span>
+        <input id="searchbyusername" type="text" class="form-control" placeholder="Search your friend by username"
+          aria-label="Username" aria-describedby="basic-addon1" id="imagehashtag">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </div>
     </form>
-</nav>
+  </nav>
   <div style="border:0.5px solid black;"></div>
 
   <span style="color:rgb(115, 255, 0);text-align:center;" id="huihui"></span>
   <center>
     <div id="helloo" style="margin-bottom: 30px;">
-      <hr>
+      <br>
     </div>
   </center>
   <div>
@@ -97,24 +130,101 @@
     <center id="imhhhhhhhhhh"><img src="" alt="" id="imaggggggggggg"
         style="border-radius: 5px; border: 5px solid rgb(185, 28, 111); "></center>
   </div>
+  <footer class="text-center text-lg-start bg-light text-muted">
+    <section
+      class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+    >
+      
+    </section>
+    <!-- Section: Social media -->
+  
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3"></i>CYBERLABS
+            </h6>
+            <p>
+              This website " Mini - insta " is built under WOC 4.O, which official recruiting process of CYBERLABS ( for 1st year fresher of  IIT ISM Dhanbad ). Developed and managed by Vibhanshu Sharma
+            </p>
+          </div>
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4" id="jkl1">
+              <i class="fas fa-gem me-3"></i>
+            </h6>
+            <p id = "jkl">
+              
+            </p>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Useful links
+            </h6>
+            <p>
+              <a href="welcome.html" class="text-reset">Home</a>
+            </p>
+            <p>
+              <a href="personalphotocollection.html" class="text-reset">personalphotocollection</a>
+            </p>
+            <p>
+              <a href="savedimages.html" class="text-reset">Saved Images</a>
+            </p>
+            <p>
+              <a href="#!" onclick="logout()" class="text-reset">Logout</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Contact
+            </h6>
+            <p><i class="fas fa-home me-3"></i> IIT ISM Dhanbad , India</p>
+            <p>
+              <i class="fas fa-envelope me-3"></i>
+              vibhanshushrm.2003@gmail.com
+            </p>
+            <p><i class="fas fa-phone me-3"></i> +91 820 9650 794</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+  
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2021 Copyright:
+      <a class="text-reset fw-bold" href="https://mdbootstrap.com/">CYBERLABS</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  
 
-  <center><button type="button" class="btn btn-primary" onclick="logout()">Logout</button></center>
-  <hr>
-
-
-
-
-
-
-
-
-  <!-- <div><button onclick="logout()">logout</button></div> -->
 
 
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
 
 
@@ -126,7 +236,6 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
 
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
 
 

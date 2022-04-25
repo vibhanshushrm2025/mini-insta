@@ -1,10 +1,10 @@
 const username = localStorage.getItem("username")
 const v = username + "/username";
-const a = username + "/name";
+const aa = username + "/name";
 firebase.database().ref(v).on("value", (snapshot) => {
     document.getElementById("usrname").innerHTML = snapshot.val();
 });
-firebase.database().ref(a).on("value", (snapshot) => {
+firebase.database().ref(aa).on("value", (snapshot) => {
     document.getElementById("namee").innerHTML = snapshot.val();
 });
 firebase.auth().onAuthStateChanged((user) => {
@@ -74,7 +74,7 @@ firebase.database().ref(www).once('value', function (snapshot) {
                     document.getElementById("helloo").appendChild(di);
                     document.getElementById("helloo").appendChild(tur);
                     document.getElementById("helloo").appendChild(tu);
-  
+
                     document.getElementById("helloo").appendChild(turr);
                     document.getElementById("helloo").appendChild(datediv);
                     imagg.style = "height:400px;border-radius: 5px; border: 5px solid rgb(185, 28, 111);"
@@ -95,7 +95,7 @@ firebase.database().ref(www).once('value', function (snapshot) {
                     firebase.database().ref("supportingstatus/" + r + "/users").child(uo).get().then((snapshot) => {
                         if ((snapshot.exists()) && (snapshot.val() == 'l')) {
                             let elem = document.getElementById(r);
-                            likebutton.style = "background-color:red";
+                            likebutton.style = "background-color:green";
                             likebutton.innerHTML = "Liked";
                         }
                         else {
@@ -165,5 +165,6 @@ firebase.database().ref(www).once('value', function (snapshot) {
 
         })
 })
-
-
+function logout() {
+    firebase.auth().signOut()
+}
